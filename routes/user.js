@@ -5,6 +5,7 @@ const User = require("../models/User")
 const { registerRules, validator } = require("../middlewares/validator")
 const jwt = require('jsonwebtoken');
 const isAuth=require("../middlewares/passport")
+const Articl=require("../models/Articl")
 
 //test
 router.get('/test', (req, res) => {

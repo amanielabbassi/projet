@@ -1,7 +1,18 @@
-import React from 'react'
-import './Profilnutri.css'
+import React, { useEffect } from 'react';
+import './Profilnutri.css';
+import { useDispatch, useSelector } from 'react-redux'
+
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { getProfil } from '../../JS/actions/profilAction';
+
 
 const Profilnutri = () => {
+  const profilInfo = useSelector(state => state.profileReducer.user)
+  const load = useSelector(state => state.profileReducer.isLoading)
+  const dispatch = useDispatch()
+  useEffect(() => {
+   dispatch(getProfil())
+  }, [])
     return (
         
            
@@ -23,7 +34,7 @@ const Profilnutri = () => {
             <div className="col-md-6">
               <div className="profile-head">
                 <h5>
-                  Kshiti Ghelani
+                 {profilInfo && profilInfo.name}
                 </h5>
                 <h6>
                   Web Developer and Designer
@@ -41,23 +52,11 @@ const Profilnutri = () => {
             </div>
             <div className="col-md-2">
               <input type="submit" className="profile-edit-btn" name="btnAddMore" defaultValue="Edit Profile" />
+              <input type="submit" className="profile-edit-btn" name="btnAddMore" defaultValue="add articl" />
             </div>
           </div>
-          <div className="row">
-            <div className="col-md-4">
-              <div className="profile-work">
-                <p>WORK LINK</p>
-                <a href>Website Link</a><br />
-                <a href>Bootsnipp Profile</a><br />
-                <a href>Bootply Profile</a>
-                <p>SKILLS</p>
-                <a href>Web Designer</a><br />
-                <a href>Web Developer</a><br />
-                <a href>WordPress</a><br />
-                <a href>WooCommerce</a><br />
-                <a href>PHP, .Net</a><br />
-              </div>
-            </div>
+          
+           
             <div className="col-md-8">
               <div className="tab-content profile-tab" id="myTabContent">
                 <div className="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
@@ -74,7 +73,7 @@ const Profilnutri = () => {
                       <label>Name</label>
                     </div>
                     <div className="col-md-6">
-                      <p>Kshiti Ghelani</p>
+                      <p>{profilInfo && profilInfo.name}</p>
                     </div>
                   </div>
                   <div className="row">
@@ -82,7 +81,7 @@ const Profilnutri = () => {
                       <label>Email</label>
                     </div>
                     <div className="col-md-6">
-                      <p>kshitighelani@gmail.com</p>
+                      <p>{profilInfo && profilInfo.email}</p>
                     </div>
                   </div>
                   <div className="row">
@@ -90,7 +89,7 @@ const Profilnutri = () => {
                       <label>Phone</label>
                     </div>
                     <div className="col-md-6">
-                      <p>123 456 7890</p>
+                      <p>{profilInfo && profilInfo.phone}</p>
                     </div>
                   </div>
                   <div className="row">
@@ -152,8 +151,8 @@ const Profilnutri = () => {
                 </div>
               </div>
             </div>
-          </div>
-        </form>           
+         
+        </form>          
       </div>
     ) }
 

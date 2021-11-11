@@ -7,6 +7,8 @@ dbConnect()
 //middlewares
 app.use(express.json())
 app.use('/user/',require("./routes/user"))
+app.use('/article',require("./routes/ArticleNutri"))
+app.use('/profil',require("./routes/userNutri"))
 
 const PORT=process.env.PORT
 
